@@ -1,36 +1,36 @@
 {
-  "name": "irem-will-bookmarks-express",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "mocha --require test/setup.js",
-    "migrate": "postgrator --config postgrator-config.js",
-    "migratetest": "postgrator --config postgrator-config-testdb.js",
-    "start": "node src/server.js",
-    "dev": "nodemon src/server.js",
-    "predeploy": "npm audit",
-    "deploy": "git push heroku master"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^6.2.0",
-    "express": "^4.16.4",
-    "helmet": "^3.15.1",
-    "knex": "^0.16.3",
-    "morgan": "^1.9.1",
-    "pg": "^7.8.1",
-    "uuid": "^3.3.2",
-    "winston": "^3.2.1"
-  },
-  "devDependencies": {
-    "chai": "^4.2.0",
-    "mocha": "^6.0.1",
-    "nodemon": "^1.18.10",
-    "postgrator-cli": "^3.1.0",
-    "supertest": "^3.4.2"
-  }
+	"name": "bookmarks-api",
+	"version": "1.0.0",
+	"description": "",
+	"main": "src/server.js",
+	"scripts": {
+		"test": "mocha --require test/setup.js",
+		"migrate": "postgrator --config postgrator-config.js",
+		"migratetest": "postgrator --config postgrator-config-testdb.js",
+		"start": "node src/server.js",
+		"dev": "nodemon src/server.js",
+		"predeploy": "npm audit",
+		"deploy": "git push heroku master"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"cors": "^2.8.5",
+		"dotenv": "^6.2.0",
+		"express": "^4.16.4",
+		"helmet": "^3.15.1",
+		"knex": "^0.16.3",
+		"morgan": "^1.9.1",
+		"pg": "^7.8.1",
+		"uuid": "^3.3.2",
+		"winston": "^3.2.1"
+	},
+	"devDependencies": {
+		"chai": "^4.2.0",
+		"mocha": "^6.0.1",
+		"nodemon": "^1.18.10",
+		"postgrator-cli": "^3.1.0",
+		"supertest": "^3.4.2"
+	}
 }

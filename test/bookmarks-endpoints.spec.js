@@ -2,7 +2,6 @@
 
 const knex = require('knex');
 const app = require('../src/app');
-const supertest = require('supertest');
 const { makeBookmarksArray } = require('./bookmarks.fixtures');
 
 describe('bookmark Endpoints', function() {
@@ -41,12 +40,13 @@ describe('bookmark Endpoints', function() {
       });
 
       it('responds with 200 and all of the bookmarks', () => {
-        return supertest(app)
-          .get('/bookmark')
+        return (
+          supertest(app)
+            .get('/bookmark')
           // .expect(200, testbookmarks);
-          .expect(200);
+            .expect(200)
+        );
       });
-
     });
   });
 
@@ -70,10 +70,12 @@ describe('bookmark Endpoints', function() {
       it('responds with 200 and the specified bookmark', () => {
         const bookmarkId = 2;
         // const expectedArticle = testbookmarks[articleId - 1];
-        return supertest(app)
-          .get(`/bookmark/${bookmarkId}`)
+        return (
+          supertest(app)
+            .get(`/bookmark/${bookmarkId}`)
           // .expect(200, expectedArticle);
-          .expect(200);
+            .expect(200)
+        );
       });
     });
   });
