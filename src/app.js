@@ -7,25 +7,43 @@ const cors = require('cors');
 const helmet = require('helmet');
 const { NODE_ENV } = require('./config');
 const bookmarkRouter = require('./bookmark-server');
+const BookmarksService = require('./bookmarks-service');
 
 const app = express();
 
-
-const morganOption = (NODE_ENV === 'production')
-  ? 'tiny'
-  : 'common';
+const morganOption = NODE_ENV === 'production' ? 'tiny' : 'common';
 
 app.use(morgan(morganOption));
 app.use(helmet());
 app.use(cors());
 app.use(bookmarkRouter);
 
-
 app.get('/', (req, res) => {
   res.send('Hello, world!');
 });
 
+app.get('/bookmark', (req, res, next) => {
+  const knexInstance = req.app.get('db');
+  BookmarksService.getAllBookmarks(knexInstance)
+    .then(bookmarks => {
+      res.json(bookmarks);
+    })
+    .catch(next);
+});
 
+app.get('/bookmark/:bookmark_id', (req, res, next) => {
+  const knexInstance = req.app.get('db');
+  BookmarksService.getById(knexInstance, req.params.bookmark_id)
+    .then(bookmark => {
+      if (!bookmark) {
+        return res.status(404).json({
+          error: { message: 'Bookmark doesn\'t exist' }
+        });
+      }
+      res.json(bookmark);
+    })
+    .catch(next);
+});
 
 // Error handler middleware
 app.use(function errorHandler(error, req, res, next) {
